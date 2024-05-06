@@ -13,7 +13,7 @@
     --bg-color: #101010;
     --second-bg-color: #151515;
     --text-color: white;
-    --accent-color: #04fffb;
+    --accent-color: #02ccfe;
 }
 
 html{
@@ -31,6 +31,11 @@ body {
     min-height: 100vh; /* Ensure the container takes at least the full height of the viewport */
 }
 
+
+section {
+    padding-top: 120px; /* Adjust this value according to the height of your fixed header */
+}
+
 .header{
     position:fixed;
     top: 0;
@@ -45,15 +50,15 @@ body {
     z-index: 100;
 }
 
-.logo{
+.logo_name{
     font-size: 3rem;
     color: var(--text-color);
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
-.logo:hover,
-.logo.active{
+.logo_name:hover,
+.logo_name.active{
     color: var(--accent-color);
     text-shadow: 0 0 50px var(--accent-color);
 }
@@ -81,22 +86,41 @@ body {
 }
 
 .profile-image{
-    margin-top: 130px;
+    margin-top: 45px;
     border-radius: 50%;
-    border: 3px transparent #04fffb;
-    box-shadow: 0 0 20px #04fffb;
+    border: 3px transparent var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-color);
     transition: 0.3s ease-in-out;
 }
 
 .profile-image:hover,
 .profile-image.active{
-    box-shadow: 0 0 30px #04fffb;
+    box-shadow: 0 0 30px var(--accent-color);
 }
 
-.home_body{
+.aboutme_body{
     text-align: center;
-    font-size: 25px;
-    margin-top: 10px;
+    font-size: 30px;
+    margin-top: 50px;
     margin-left: 200px;
     margin-right: 200px;
+    margin-bottom: 50px;
+}
+
+.resume_body{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
+}
+
+.contacts_body{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 200px;
 }
