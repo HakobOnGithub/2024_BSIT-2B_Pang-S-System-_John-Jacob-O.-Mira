@@ -8,7 +8,7 @@ session_start();
 
 <head>
 	<meta charset="UTF-8">
-	<title>Welcome User</title>
+	<title>Welcome Customer</title>
 	<style>
 		.barber_form_container {
 			padding: 20px;
@@ -140,7 +140,7 @@ session_start();
 					<div class="clearfix">
 
 						<div class="pull-left logo-box">
-							<div class="logo"><a href="index.html"><img src="images/ssb_small.png" alt="" title=""></a></div>
+							<div class="logo"><a href="index.php"><img src="images/ssb_small.png" alt="" title=""></a></div>
 						</div>
 
 						<div class="nav-outer clearfix">

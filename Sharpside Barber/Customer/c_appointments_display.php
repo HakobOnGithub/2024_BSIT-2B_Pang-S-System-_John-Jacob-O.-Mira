@@ -1,7 +1,21 @@
 <?php
 include_once "db.php";
 
+// Ensure user_id is set
+if (!isset($_SESSION['user_info_id'])) {
+    die("User is not logged in.");
+}
+
 $user_id = $_SESSION['user_info_id'];
+
+// Update expired appointments
+$updateExpiredAppointmentsQuery = "
+    UPDATE appointment_details
+    SET status_id = 5
+    WHERE appointment_date_time < NOW()
+    AND status_id != 5
+";
+mysqli_query($conn, $updateExpiredAppointmentsQuery);
 
 // SQL query to fetch appointments linked to the logged-in user
 $query_appointments = "
@@ -21,10 +35,9 @@ $query_appointments = "
     JOIN 
         appointment_status ast ON ad.status_id = ast.status_id  
     WHERE
-        ad.is_read = 0  
-        AND ad.user_id = $user_id
+        ad.user_id = $user_id
+        AND ad.status_id != 5;
 ";
-
 
 // Execute the SQL query
 $result_appointments = mysqli_query($conn, $query_appointments);
@@ -38,24 +51,5 @@ if (!$result_appointments) {
 if (mysqli_num_rows($result_appointments) === 0) {
     echo "No appointments found.";  // Display message if no appointments are found
     exit;  // Stop further execution
-}
-
-// Check if completed appointment form is submitted
-if (isset($_POST['complete_appointment'])) {
-    // Get appointment_id from POST data
-    $appointmentId = $_POST['appointment_id'];
-
-    // Update the status of the appointment to completed (status_id = 5)
-    $updateQuery = "UPDATE appointment_details SET status_id = 5 WHERE appointment_id = $appointmentId";
-    $result = mysqli_query($conn, $updateQuery);
-
-    // Check if update was successful
-    if ($result) {
-        // Redirect back to the page displaying appointments
-        header("Location: c_account.php #appointments");
-        exit();
-    } else {
-        echo "Error completing appointment: " . mysqli_error($conn);
-    }
 }
 ?>
